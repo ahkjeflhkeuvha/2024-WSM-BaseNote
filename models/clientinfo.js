@@ -7,14 +7,30 @@ module.exports = (sequelize, DataTypes) => {
 
   }
   ClientInfo.init({
-    _id: DataTypes.STRING,
-    pw: DataTypes.STRING,
-    name: DataTypes.STRING,
-    phonenum: DataTypes.STRING
+    _id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true,
+      unique: true
+    },
+    pw: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    name : {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    phonenum : {
+      type : DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    }
   }, {
     sequelize,
     modelName: 'ClientInfo',
-    tableName : 'client_info'
+    tableName : 'client_info',
+    timestamps: false
   });
   return ClientInfo;
 };
