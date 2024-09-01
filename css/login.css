@@ -1,0 +1,17 @@
+* {
+    font-family: '기아';
+}
+
+a {
+    color: black;
+    text-decoration: none;  
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+nav img {
+    width: 100px;
+}
