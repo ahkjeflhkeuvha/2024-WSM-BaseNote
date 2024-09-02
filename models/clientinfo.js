@@ -1,36 +1,33 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class ClientInfo extends Model {
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../db/db.js'); // Sequelize 인스턴스 가져오기
 
+class ClientInfo extends Model {}
+
+ClientInfo.init({
+  _id: {
+    type: DataTypes.STRING(20),
+    allowNull: false,
+    primaryKey: true,
+  },
+  pw: {
+    type: DataTypes.STRING(20),
+    allowNull: false,
+  },
+  name: {
+    type: DataTypes.STRING(10),
+    allowNull: false,
+  },
+  phonenum: {
+    type: DataTypes.STRING(20),
+    allowNull: false,
+    unique: true,
   }
-  ClientInfo.init({
-    _id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true,
-      unique: true
-    },
-    pw: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    name : {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    phonenum : {
-      type : DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    }
-  }, {
-    sequelize,
-    modelName: 'ClientInfo',
-    tableName : 'client_info',
-    timestamps: false
-  });
-  return ClientInfo;
-};
+}, {
+  sequelize,
+  modelName: 'ClientInfo',
+  tableName: 'client_info',
+  timestamps: false,
+});
+
+module.exports = ClientInfo;
