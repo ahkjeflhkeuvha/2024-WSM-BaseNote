@@ -39,6 +39,28 @@ router.post('/signup', async (req, res) => {
     console.error('Database query error:', err);
     res.status(500).json({ message: '회원가입에 실패', error: err.message });
   }
+});
+
+router.get('/findid', async (req, res) => {
+  const { name, phonenum } = req.body;
+  try {
+    const user = await ClientInfo.findOne({
+      attributes: ['_id'],
+      where: {
+        name : name,
+        phonenum : phonenum
+      }
+    });
+
+    if(!user) {
+      res.status(401).json({ message : '아이디 찾기에 실패했습니다.' });
+    } else {
+      res.status(200).json({ message : '아이디 찾기 성공', user });
+    }
+  } catch (err) {
+    console.error('Database query error:', err);
+    res.status(500).json({ message: '아이디 찾기 실패', error: err.message });
+  }
 })
 
 module.exports = router;
