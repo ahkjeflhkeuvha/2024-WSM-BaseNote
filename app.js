@@ -7,7 +7,9 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
+
 const user = require('./routes/users');
+const { sequelize } = require('./models');
 app.use('/users', user);
 
 
