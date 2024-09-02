@@ -29,10 +29,11 @@ async function submit(event) {
     }
 
     const result = await findId(username, userphone);
-    
-    if (result && result.success) {
-        alert(`${username} 님의 아이디는 ${result[user][_id]} 입니다.`)
-        window.location.href = 'main.html'; // 성공 시 이동할 페이지
+    if (result) {
+        alert(`${username} 님의 아이디는 ${result["user"]["_id"]} 입니다.`)
+        setTimeout(() => {
+            window.location.href = 'main.html'; // 성공 시 이동할 페이지
+        }, 3000);
     } else {
         alert(result.message || '아이디 찾기에 실패하였습니다. 다시 시도해 주세요.');
     }
