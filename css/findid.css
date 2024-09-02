@@ -32,53 +32,42 @@ nav img {
 
 /* 로그인 박스 */
 
-.login-container {
+.findId-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 10%;
+    margin-top: 20%;
     margin-bottom: 84px;
 }
 
-.login-container > h2 {
+.findId-container > h2 {
     font-size: 48px;
 }
 
 /* 입력창 */
 
-.input-container {
-    position: relative;
+#findIdForm {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    background-color: #F7F7F7;
-    height: 78px;
-    margin-bottom: 18px;
 }
 
-.input-container > p {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    margin: 0;
-}
-
-.input-container > input {
-    width: 1144px;
+#findIdForm > input {
+    width: 600px;
     height: 60px;
     border: 0;
     border-radius: 5px;
+    margin-bottom: 18px;
     background-color: #F7F7F7;
     font-size: 20px;
     padding: 0 15px;
-    outline: none;
 }
 
-button {
-    width: 1144px;
-    height: 72px;
+#findIdForm > #submitButton {
+    width: 600px;
+    height: 60px;
     border: 0;
     border-radius: 5px;
     margin-bottom: 18px;

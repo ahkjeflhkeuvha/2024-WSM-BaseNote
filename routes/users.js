@@ -42,7 +42,7 @@ router.post('/signup', async (req, res) => {
 });
 
 router.get('/findid', async (req, res) => {
-  const { name, phonenum } = req.body;
+  const { name, phonenum } = req.query;
   try {
     const user = await ClientInfo.findOne({
       attributes: ['_id'],
