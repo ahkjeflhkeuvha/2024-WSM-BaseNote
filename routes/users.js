@@ -4,10 +4,13 @@ const { ClientInfo } = require('../models'); // models에서 ClientInfo를 가�
 
 router.post('/login', async (req, res) => {
   const { _id, pw } = req.body;
-    console.log(req.body)
+
   try {
-    const user = await ClientInfo.findOne({ where: { _id: _id, pw: pw } });
+    // `findOne` 메서드를 사용하여 조건에 맞는 데이터 검색
+    const user = await ClientInfo.findOne({ where: { _id, pw } });
     console.log('User found:', user);
+    const clientinfo = await ClientInfo.findAll()
+    console.log(clientinfo)
     if (!user) {
       res.status(401).json({ message: '로그인 정보가 일치하지 않습니다.' });
     } else {
