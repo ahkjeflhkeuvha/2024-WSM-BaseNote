@@ -8,9 +8,7 @@ router.post('/login', async (req, res) => {
   try {
     // `findOne` 메서드를 사용하여 조건에 맞는 데이터 검색
     const user = await ClientInfo.findOne({ where: { _id, pw } });
-    console.log('User found:', user);
-    const clientinfo = await ClientInfo.findAll()
-    console.log(clientinfo)
+
     if (!user) {
       res.status(401).json({ message: '로그인 정보가 일치하지 않습니다.' });
     } else {
@@ -21,5 +19,26 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: '로그인 실패', error: err.message });
   }
 });
+
+router.post('/signup', async (req, res) => {
+  const { _id, pw, name, phonenum} = req.body;
+  try {
+    const user = await ClientInfo.create({
+      _id : _id,
+      pw : pw,
+      name : name,
+      phonenum : phonenum
+    });
+  
+    if(!user) {
+      res.status(401).json({ message : '회원가입에 실패했습니다.' })
+    } else {
+      res.status(200).json({ message : '회원가입 성공', user });
+    }
+  } catch (err) {
+    console.error('Database query error:', err);
+    res.status(500).json({ message: '회원가입에 실패', error: err.message });
+  }
+})
 
 module.exports = router;
