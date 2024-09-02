@@ -34,7 +34,7 @@ async function submit(event) {
     const result = await login(userid, userpw);
     console.log(result)
     if (result && result.success) {
-        console.log('location to main')
+        console.log('로그인 성공')
         window.location.href = 'main.html'; // 로그인 성공 시 이동할 페이지
     } else {
         alert(result.message || '로그인에 실패하였습니다. 다시 시도해 주세요.');

@@ -30,9 +30,9 @@ nav img {
     width: 75px;
 }
 
-/* 로그인 박스 */
+/* 회원가입 박스 */
 
-.login-container {
+form {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -41,7 +41,7 @@ nav img {
     margin-bottom: 84px;
 }
 
-.login-container > h2 {
+form > h2 {
     font-size: 48px;
 }
 
@@ -55,6 +55,7 @@ nav img {
     align-items: center;
     background-color: #F7F7F7;
     height: 78px;
+    width: 1144px;
     margin-bottom: 18px;
 }
 
