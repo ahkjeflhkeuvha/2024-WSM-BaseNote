@@ -10,39 +10,44 @@ Diary.init({
         autoIncrement: true,
         primaryKey: true
     },
+    userId: {
+        type: DataTypes.STRING(20),
+        allowNull: false
+    },
+    title: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+    },
     date: {
         type: DataTypes.DATEONLY,
         allowNull: false
     },
-    bestPlayer: {
-        type: DataTypes.STRING,
+    startingPitcher: {
+        type: DataTypes.STRING(100),
         allowNull: true
     },
-    pitcher: {
-        type: DataTypes.STRING,
+    location: {
+        type: DataTypes.STRING(100),
         allowNull: true
     },
-    stadium: {
-        type: DataTypes.STRING,
+    result: {
+        type: DataTypes.STRING(10),
         allowNull: true
-    },
-    winLose: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    title: {
-        type: DataTypes.STRING,
-        allowNull: false
     },
     content: {
         type: DataTypes.TEXT,
         allowNull: false
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
     }
 }, {
     sequelize,
     modelName: 'Diary',
     tableName: 'diaries', // 테이블 이름 설정
-    timestamps: false
+    timestamps: false // timestamps 옵션을 사용하여 createdAt, updatedAt을 사용하지 않도록 설정
 });
 
 module.exports = Diary;
