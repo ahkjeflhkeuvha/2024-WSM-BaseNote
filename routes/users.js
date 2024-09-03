@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { ClientInfo, Diary } = require('../models');
+const { ClientInfo } = require('../models/clientinfo');
 
 // 로그인 API 경로
 router.post('/login', async (req, res) => {
@@ -22,22 +22,22 @@ router.post('/login', async (req, res) => {
 });
 
 // 사용자의 다이어리를 가져오는 API
-router.get('/:id', async (req, res) => {
-  const userId = req.params.id;
+// router.get('/:id', async (req, res) => {
+//   const userId = req.params.id;
 
-  try {
-      const diaries = await Diary.findAll({ where: { user_id: userId } });
+//   try {
+//       const diaries = await Diary.findAll({ where: { user_id: userId } });
 
-      if (diaries.length === 0) {
-          return res.status(404).json({ message: '다이어리가 존재하지 않습니다.' });
-      }
+//       if (diaries.length === 0) {
+//           return res.status(404).json({ message: '다이어리가 존재하지 않습니다.' });
+//       }
 
-      res.status(200).json({ diaries });
-  } catch (err) {
-      console.error('Error fetching diaries:', err);
-      res.status(500).json({ message: '다이어리 불러오기 실패', error: err.message });
-  }
-});
+//       res.status(200).json({ diaries });
+//   } catch (err) {
+//       console.error('Error fetching diaries:', err);
+//       res.status(500).json({ message: '다이어리 불러오기 실패', error: err.message });
+//   }
+// });
 
 
 
