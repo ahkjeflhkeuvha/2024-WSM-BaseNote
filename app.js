@@ -9,8 +9,10 @@ app.use(cors());
 
 
 const user = require('./routes/users');
-const { sequelize } = require('./models');
 app.use('/users', user);
+
+const diary = require('./routes/diaries');
+app.use('/diaries', diary)
 
 
 app.listen(port, () => {

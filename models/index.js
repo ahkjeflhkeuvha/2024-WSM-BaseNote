@@ -1,9 +1,10 @@
-const sequelize = require('../config/config');   // DB 설정을 불러옴
-const ClientInfo = require('./clientinfo');      // 모델 정의 파일을 불러옴
+const sequelize = require('../config/config'); // DB 설정 불러오기
 
-const db = {
+const ClientInfo = require('./clientinfo');  // 수정된 모델 불러오기
+const Diary = require('./diary');  // Diary 모델 불러오기
+
+module.exports = {
   sequelize,
-  ClientInfo: ClientInfo // 모델을 직접 사용
+  ClientInfo,
+  Diary,
 };
-
-module.exports = db;

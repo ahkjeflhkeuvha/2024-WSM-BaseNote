@@ -1,9 +1,10 @@
 'use strict';
-
-const { Sequelize, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../db/db.js'); // Sequelize 인스턴스 가져오기
 
-const ClientInfo = sequelize.define('ClientInfo', {
+class ClientInfo extends Model {}
+
+ClientInfo.init({
   _id: {
     type: DataTypes.STRING(20),
     allowNull: false,
@@ -21,10 +22,12 @@ const ClientInfo = sequelize.define('ClientInfo', {
     type: DataTypes.STRING(20),
     allowNull: false,
     unique: true,
-  },
+  }
 }, {
+  sequelize,
+  modelName: 'ClientInfo',
   tableName: 'client_info',
-  timestamps: false, // createdAt, updatedAt 사용하지 않음
+  timestamps: false,
 });
 
 module.exports = ClientInfo;

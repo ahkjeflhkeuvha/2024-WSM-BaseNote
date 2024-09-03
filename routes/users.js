@@ -1,24 +1,45 @@
 const express = require('express');
 const router = express.Router();
-const { ClientInfo } = require('../models'); // models에서 ClientInfo를 가져옴
+const { ClientInfo, Diary } = require('../models');
 
+// 로그인 API 경로
 router.post('/login', async (req, res) => {
-  const { _id, pw } = req.body;
+    const { _id, pw } = req.body;
+
+    try {
+        const user = await ClientInfo.findOne({ where: { _id: _id, pw: pw } });
+
+        if (!user) {
+            res.status(401).json({ message: '로그인 정보가 일치하지 않습니다.' });
+        } else {
+            // 로그인 성공시 사용자 아이디로 다이어리 페이지로 이동
+            res.status(200).json({ message: '로그인 성공', redirectUrl: `/diaries/${_id}` });
+        }
+    } catch (err) {
+        console.error('Database query error:', err);
+        res.status(500).json({ message: '로그인 실패', error: err.message });
+    }
+});
+
+// 사용자의 다이어리를 가져오는 API
+router.get('/:id', async (req, res) => {
+  const userId = req.params.id;
 
   try {
-    // `findOne` 메서드를 사용하여 조건에 맞는 데이터 검색
-    const user = await ClientInfo.findOne({ where: { _id, pw } });
+      const diaries = await Diary.findAll({ where: { user_id: userId } });
 
-    if (!user) {
-      res.status(401).json({ message: '로그인 정보가 일치하지 않습니다.' });
-    } else {
-      res.status(200).json({ message: '로그인 성공', user });
-    }
+      if (diaries.length === 0) {
+          return res.status(404).json({ message: '다이어리가 존재하지 않습니다.' });
+      }
+
+      res.status(200).json({ diaries });
   } catch (err) {
-    console.error('Database query error:', err);
-    res.status(500).json({ message: '로그인 실패', error: err.message });
+      console.error('Error fetching diaries:', err);
+      res.status(500).json({ message: '다이어리 불러오기 실패', error: err.message });
   }
 });
+
+
 
 router.post('/signup', async (req, res) => {
   const { _id, pw, name, phonenum} = req.body;
