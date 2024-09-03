@@ -1,58 +1,43 @@
-async function findDiary(id) {
+// js/basenote.js
+
+document.getElementById('submitButton').addEventListener('click', async function(event) {
+    event.preventDefault(); // 기본 폼 제출 동작 방지
+
+    // 폼 데이터 수집
+    const date = document.getElementById('date').value;
+    const bestPlayer = document.getElementById('best-player-text').value;
+    const pitcher = document.getElementById('pitcher').value;
+    const stadium = document.getElementById('stadium').value;
+    const winLose = document.getElementById('win-lose').value;
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+
+    // 데이터 전송
     try {
-        const response = await fetch(`http://localhost:3000/diaries/${id}`, {
-            method: 'GET'
+        const response = await fetch('http://localhost:3000/api/diaries', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                date: date,
+                bestPlayer: bestPlayer,
+                pitcher: pitcher,
+                stadium: stadium,
+                winLose: winLose,
+                title: title,
+                content: content
+            })
         });
 
         if (!response.ok) {
-            throw new Error(`ID 찾기 실패: ${response.status}`);
+            throw new Error('일기 저장 실패');
         }
 
         const data = await response.json();
-        return data.diaries;
+        alert('일기가 성공적으로 저장되었습니다.');
     } catch (err) {
-        console.error(err);
-        alert('다시 시도해 주십시오.');
+        console.error('Error:', err);
+        alert('일기 저장 중 오류가 발생했습니다.');
     }
-}
-
-async function onload(event) {
-    const userId = extractUserIdFromUrl(); 
-    console.log(userId)// 현재 URL에서 ID 추출
-    const diaries = await findDiary(userId);
-
-    if (diaries.length > 0) {
-        displayDiaries(diaries);
-    } else {
-        alert('등록된 다이어리가 없습니다.');
-    }
-}
-
-function extractUserIdFromUrl() {
-    const urlParts = window.location.pathname.split('/');
-    return urlParts[urlParts.length - 1];
-}
-
-function displayDiaries(diaries) {
-    const diaryList = document.getElementById('diary-list');
-    diaries.forEach(diary => {
-        const diaryItem = document.createElement('div');
-        diaryItem.className = 'diary-item';
-        diaryItem.innerHTML = `
-            <h3>${diary.title}</h3>
-            <p>${diary.content.substring(0, 100)}...</p>
-            <button onclick="showFullDiary(${diary.id})">더 보기</button>
-        `;
-        diaryList.appendChild(diaryItem);
-    });
-}
-
-function showFullDiary(diaryId) {
-    const selectedDiary = diaries.find(diary => diary.id === diaryId);
-    if (selectedDiary) {
-        // 모달이나 팝업으로 다이어리 전체 내용을 보여줍니다.
-        alert(`제목: ${selectedDiary.title}\n내용: ${selectedDiary.content}\n선발투수: ${selectedDiary.starting_pitcher}\n장소: ${selectedDiary.location}\n결과: ${selectedDiary.result}`);
-    }
-}
-
-window.onload = onload;
+});

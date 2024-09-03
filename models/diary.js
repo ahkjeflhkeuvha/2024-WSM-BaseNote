@@ -1,6 +1,6 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../db/db.js'); // DB 설정 가져오기
+const sequelize = require('../db/db.js'); // Sequelize 인스턴스 가져오기
 
 class Diary extends Model {}
 
@@ -8,37 +8,41 @@ Diary.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
-    },
-    userId: {
-        type: DataTypes.STRING(20),
-        allowNull: false,
-    },
-    title: {
-        type: DataTypes.STRING(100),
-        allowNull: false,
+        primaryKey: true
     },
     date: {
-        type: DataTypes.DATE,
-        allowNull: false,
+        type: DataTypes.DATEONLY,
+        allowNull: false
     },
-    startingPitcher: {
-        type: DataTypes.STRING(50),
+    bestPlayer: {
+        type: DataTypes.STRING,
+        allowNull: true
     },
-    location: {
-        type: DataTypes.STRING(100),
+    pitcher: {
+        type: DataTypes.STRING,
+        allowNull: true
     },
-    result: {
-        type: DataTypes.STRING(10),
+    stadium: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    winLose: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     content: {
         type: DataTypes.TEXT,
+        allowNull: false
     }
 }, {
     sequelize,
     modelName: 'Diary',
-    tableName: 'diaries',
-    timestamps: false,
+    tableName: 'diaries', // 테이블 이름 설정
+    timestamps: false
 });
 
 module.exports = Diary;
