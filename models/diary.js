@@ -20,19 +20,19 @@ Diary.init({
     },
     bestPlayer: {
         type: DataTypes.STRING(100),
-        allowNull: true
+        allowNull: false
     },
     startingPitcher: {
         type: DataTypes.STRING(100),
-        allowNull: true
+        allowNull: false
     },
     location: {
         type: DataTypes.STRING(100),
-        allowNull: true
+        allowNull: false
     },
     result: {
         type: DataTypes.STRING(10), // '승', '패', '무' 등을 저장
-        allowNull: true
+        allowNull: false
     },
     title: {
         type: DataTypes.STRING(255),
