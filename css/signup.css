@@ -1,6 +1,8 @@
 * {
     font-family: '기아';
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -32,7 +34,7 @@ nav img {
 
 /* 로그인 박스 */
 
-.login-container {
+#signup-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -41,7 +43,7 @@ nav img {
     margin-bottom: 84px;
 }
 
-.login-container > h2 {
+#signup-container > h2 {
     font-size: 48px;
 }
 
