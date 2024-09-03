@@ -4,17 +4,18 @@ const { Diary } = require('../models'); // Diary 모델을 가져옵니다
 
 // 일기 저장 API
 router.post('/save', async (req, res) => {
-    const { userId, title, date, startingPitcher, location, result, content } = req.body;
+    const { userId, date, bestPlayer, startingPitcher, location, result, title, content } = req.body;
 
     try {
         // Diary 모델을 사용하여 데이터베이스에 새로운 일기 추가
         const newDiary = await Diary.create({
             userId: userId,
-            title: title,
             date: date,
+            bestPlayer: bestPlayer,
             startingPitcher: startingPitcher,
             location: location,
             result: result,
+            title: title,
             content: content
         });
 

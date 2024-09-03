@@ -6,7 +6,7 @@ const Diary = require('./diary');  // Diary 모델 불러오기
 module.exports = {
   sequelize,
   ClientInfo,
-  Diary,
+  Diary
 };
 
 

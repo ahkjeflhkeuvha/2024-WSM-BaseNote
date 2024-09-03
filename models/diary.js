@@ -14,13 +14,13 @@ Diary.init({
         type: DataTypes.STRING(20),
         allowNull: false
     },
-    title: {
-        type: DataTypes.STRING(255),
-        allowNull: false
-    },
     date: {
         type: DataTypes.DATEONLY,
         allowNull: false
+    },
+    bestPlayer: {
+        type: DataTypes.STRING(100),
+        allowNull: true
     },
     startingPitcher: {
         type: DataTypes.STRING(100),
@@ -31,8 +31,12 @@ Diary.init({
         allowNull: true
     },
     result: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING(10), // '승', '패', '무' 등을 저장
         allowNull: true
+    },
+    title: {
+        type: DataTypes.STRING(255),
+        allowNull: false
     },
     content: {
         type: DataTypes.TEXT,
