@@ -18,9 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
-  }, {});
-  // ClientInfo.associate = function(models) {
-  //   // associations can be defined here
-  // };
+  }, {
+    timestamps: false // timestamps 옵션 비활성화
+  });
   return ClientInfo;
 };

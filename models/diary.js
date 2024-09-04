@@ -33,6 +33,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false
     }
-  }, {});
+  }, {
+    timestamps: false // timestamps 옵션 비활성화
+  });
   return Diary;
 };
