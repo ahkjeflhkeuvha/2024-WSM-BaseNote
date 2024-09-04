@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { Diary } = require('../models/diary');
+const db = require('../models'); // 여기서 모델을 가져옵니다
 
 // 일기 저장 API
 router.post('/save', async (req, res) => {
     const { userId, date, bestPlayer, startingPitcher, location, result, title, content } = req.body;
 
     try {
-        const newDiary = await Diary.create({
+        const newDiary = await db.Diary.create({
             userId: userId,
             date: date,
             bestPlayer: bestPlayer,
@@ -29,8 +29,8 @@ router.get('/basenote/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        // userId가 일치하는 diaries 데이터를 조회
-        const diaries = await Diary.findAll({ where: { userId: id } });
+        // ID가 일치하는 diaries 데이터를 모두 조회
+        const diaries = await db.Diary.findAll({ where: { userId: id } });
 
         if (!diaries.length) {
             return res.status(404).json({ success: false, message: 'Diary not found' });

@@ -7,9 +7,9 @@ async function saveDiary(userId, title, date, bestPlayer, pitcher, location, gam
             },
             body: JSON.stringify({
                 userId: userId,
-                date: date,
+                date: date, // 날짜 형식 확인
                 bestPlayer: bestPlayer,
-                startingPitcher: pitcher, // 변수명 확인
+                startingPitcher: pitcher,
                 location: location,
                 result: gameRes,
                 title: title,
@@ -23,13 +23,13 @@ async function saveDiary(userId, title, date, bestPlayer, pitcher, location, gam
 
         const data = await response.json();
         console.log('Diary saved successfully:', data);
-        return data; // 함수가 성공적으로 실행된 경우 반환 값 추가
+        return data;
     } catch (error) {
         console.error('Failed to save diary:', error.message || error);
-        // 에러 객체를 반환하여 상위 함수에서 처리할 수 있게 함
         return { message: error.message || 'Unknown error' };
     }
 }
+
 
 async function submit(event) {
     event.preventDefault();
