@@ -22,10 +22,8 @@ async function saveDiary(userId, title, date, bestPlayer, pitcher, location, gam
         }
 
         const data = await response.json();
-        console.log('Diary saved successfully:', data);
         return data;
     } catch (error) {
-        console.error('Failed to save diary:', error.message || error);
         return { message: error.message || 'Unknown error' };
     }
 }
@@ -70,13 +68,11 @@ async function fetchDiaries(id) {
 
         if (data.success) {
             // diaries 데이터를 처리하는 코드
-            console.log(data.diaries);
             displayDiaries(data.diaries);
         } else {
             alert(data.message || '다시 시도해 주세요.');
         }
     } catch (err) {
-        console.error(err);
         alert('서버에서 데이터를 가져오는 데 문제가 발생했습니다.');
     }
 }

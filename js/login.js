@@ -21,7 +21,6 @@ async function login(_id, pw) {
             alert('로그인에 실패했습니다.');
         }
     } catch (err) {
-        console.error(err);
         alert('다시 시도해 주십시오.');
     }
 }

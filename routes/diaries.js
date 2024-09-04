@@ -20,7 +20,6 @@ router.post('/save', async (req, res) => {
 
         res.status(201).json({ message: '일기 저장 성공', diary: newDiary });
     } catch (err) {
-        console.error('Database error:', err);
         res.status(500).json({ message: '일기 저장 실패', error: err.message });
     }
 });
@@ -38,7 +37,6 @@ router.get('/basenote/:id', async (req, res) => {
 
         return res.json({ success: true, diaries: diaries });
     } catch (err) {
-        console.error(err);
         return res.status(500).json({ success: false, message: 'Server error' });
     }
 });

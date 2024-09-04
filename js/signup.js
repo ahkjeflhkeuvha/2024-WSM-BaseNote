@@ -15,7 +15,6 @@ async function signup(_id, pw, name, phonenum) {
         const data = await response.json();
         return data;
     } catch (err) {
-        console.error(err);
         alert('다시 시도해 주십시오.');
     }
 }
