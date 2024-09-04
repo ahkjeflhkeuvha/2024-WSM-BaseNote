@@ -9,7 +9,7 @@ async function signup(_id, pw, name, phonenum) {
         });
 
         if (!response.ok) {
-            throw new Error(`Login failed: ${response.status}`);
+            throw new Error(`Sign up failed: ${response.status}`);
         }
 
         const data = await response.json();
@@ -34,7 +34,7 @@ async function submit(event) {
         return;
     }
 
-    if (userpw != userpwck) {
+    if (userpw !== userpwck) {
         alert('비밀번호를 확인해 주세요.');
         return;
     }

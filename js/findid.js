@@ -29,8 +29,8 @@ async function submit(event) {
     }
 
     const result = await findId(username, userphone);
-    if (result) {
-        alert(`${username} 님의 아이디는 ${result["user"]["_id"]} 입니다.`)
+    if (result && result.success) {
+        alert(`${username} 님의 아이디는 ${result.user._id} 입니다.`)
         setTimeout(() => {
             window.location.href = 'main.html'; // 성공 시 이동할 페이지
         }, 3000);

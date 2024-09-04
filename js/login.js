@@ -5,7 +5,7 @@ async function login(_id, pw) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ _id, pw })
+            body: JSON.stringify({ _id: _id, pw: pw })
         });
 
         if (!response.ok) {
@@ -13,10 +13,16 @@ async function login(_id, pw) {
         }
 
         const data = await response.json();
-        return data;
+        
+        if (data.success) {
+            // 로그인 성공 시 사용자 ID를 기반으로 페이지 이동
+            window.location.href = `main/${encodeURIComponent(_id)}`;
+        } else {
+            alert('로그인에 실패했습니다.');
+        }
     } catch (err) {
-        console.error('Error during login:', err.message || err);
-        alert('서버와 연결할 수 없습니다. 인터넷 연결을 확인하시고 다시 시도해 주세요.');
+        console.error(err);
+        alert('다시 시도해 주십시오.');
     }
 }
 
@@ -26,8 +32,6 @@ async function submit(event) {
     const userid = document.getElementById('id').value;
     const userpw = document.getElementById('pw').value;
 
-    console.log(userid, userpw)
-
     if (!userid || !userpw) {
         alert('아이디 또는 비밀번호를 입력해 주세요.');
         return;
@@ -35,7 +39,7 @@ async function submit(event) {
 
     const result = await login(userid, userpw);
     console.log(result);
-    if (result) {
+    if (result && result.success) {
         console.log('로그인 성공');
         window.location.href = `main/${encodeURIComponent(userid)}`;
     } else {
