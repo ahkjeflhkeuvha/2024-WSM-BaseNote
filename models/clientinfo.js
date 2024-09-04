@@ -2,6 +2,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../db/db.js'); // Sequelize 인스턴스 가져오기
 
+console.log(sequelize);  // sequelize가 undefined가 아닌지 확인
+
 class ClientInfo extends Model {}
 
 ClientInfo.init({

@@ -15,8 +15,8 @@ async function login(_id, pw) {
         const data = await response.json();
         return data;
     } catch (err) {
-        console.error(err);
-        alert('다시 시도해 주십시오.');
+        console.error('Error during login:', err.message || err);
+        alert('서버와 연결할 수 없습니다. 인터넷 연결을 확인하시고 다시 시도해 주세요.');
     }
 }
 
@@ -26,18 +26,20 @@ async function submit(event) {
     const userid = document.getElementById('id').value;
     const userpw = document.getElementById('pw').value;
 
+    console.log(userid, userpw)
+
     if (!userid || !userpw) {
         alert('아이디 또는 비밀번호를 입력해 주세요.');
         return;
     }
 
     const result = await login(userid, userpw);
-    console.log(result)
-    if (result && result.success) {
-        console.log('로그인 성공')
-        window.location.href = 'main.html'; // 로그인 성공 시 이동할 페이지
+    console.log(result);
+    if (result) {
+        console.log('로그인 성공');
+        window.location.href = `main/${encodeURIComponent(userid)}`;
     } else {
-        alert(result.message || '로그인에 실패하였습니다. 다시 시도해 주세요.');
+        alert('로그인에 실패하였습니다. 다시 시도해 주세요.');
     }
 }
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Diary } = require('../models');
+const { Diary } = require('../models/diary');
 
 // 일기 저장 API
 router.post('/save', async (req, res) => {
@@ -24,5 +24,9 @@ router.post('/save', async (req, res) => {
         res.status(500).json({ message: '일기 저장 실패', error: err.message });
     }
 });
+
+router.get('/:id', async (req, res) => {
+    console.log(req.params.id)
+})
 
 module.exports = router;
