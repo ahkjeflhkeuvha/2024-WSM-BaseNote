@@ -38,8 +38,7 @@ async function submit(event) {
     }
 
     const result = await login(userid, userpw);
-    console.log(result);
-    if (result && result.success) {
+    if (result) {
         console.log('로그인 성공');
         window.location.href = `main/${encodeURIComponent(userid)}`;
     } else {
