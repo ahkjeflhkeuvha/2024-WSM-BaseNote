@@ -1,7 +1,7 @@
 const userid = localStorage.getItem('id');
 
 async function submit(event) {
-    window.location.href = 'basenote.html'
+    console.log(userid);
 }
 
 document.getElementById('basenote-a').addEventListener('click', submit);

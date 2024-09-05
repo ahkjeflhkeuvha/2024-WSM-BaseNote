@@ -11,13 +11,11 @@ async function login(_id, pw) {
         if (!response.ok) {
             throw new Error(`Login failed: ${response.status}`);
         }
-
+                         
         const data = await response.json();
-        
+        console.log(data)
         if (data.success) {
-            // 로그인 성공 시 사용자 ID를 기반으로 페이지 이동
-            localStorage.setItem('id', _id);
-            window.location.href = `main.html`;
+            return data
         } else {
             alert('로그인에 실패했습니다.');
         }
@@ -38,6 +36,7 @@ async function submit(event) {
     }
 
     const result = await login(userid, userpw);
+    console.log(result)
     if (result) {
         console.log('로그인 성공');
         localStorage.setItem('id', userid);
