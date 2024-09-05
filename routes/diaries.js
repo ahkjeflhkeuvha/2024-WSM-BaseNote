@@ -29,6 +29,7 @@ router.get('/:id', async (req, res) => {
 
     try {
         const diaries = await db.Diary.findAll({ where : { id : id}});
+        console.log(diaries)
         if (!diaries.length) {
             return res.status(404).json({ success : false, message : 'Diary not found' });
         }
