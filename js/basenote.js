@@ -1,3 +1,5 @@
+const userid = localStorage.getItem('id')
+
 async function saveDiary(userId, title, date, bestPlayer, pitcher, location, gameRes, content) {
     try {
         const response = await fetch('http://localhost:3000/diaries/save', {
@@ -32,7 +34,7 @@ async function saveDiary(userId, title, date, bestPlayer, pitcher, location, gam
 async function submit(event) {
     event.preventDefault();
 
-    const userId = 'jieun0996';
+    const userId = userid;
     const title = document.getElementById('title').value;
     const date = document.getElementById('date').value;
     const bestPlayer = document.getElementById('best-player-text').value;
