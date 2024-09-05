@@ -16,7 +16,8 @@ async function login(_id, pw) {
         
         if (data.success) {
             // 로그인 성공 시 사용자 ID를 기반으로 페이지 이동
-            window.location.href = `main/${encodeURIComponent(_id)}`;
+            localStorage.setItem('id', _id);
+            window.location.href = `main.html`;
         } else {
             alert('로그인에 실패했습니다.');
         }
@@ -39,7 +40,8 @@ async function submit(event) {
     const result = await login(userid, userpw);
     if (result) {
         console.log('로그인 성공');
-        window.location.href = `main/${encodeURIComponent(userid)}`;
+        localStorage.setItem('id', userid);
+        window.location.href = `main.html`;
     } else {
         alert('로그인에 실패하였습니다. 다시 시도해 주세요.');
     }
