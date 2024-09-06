@@ -40,6 +40,8 @@ async function submit(event) {
     if (result) {
         console.log('로그인 성공');
         localStorage.setItem('id', userid);
+        localStorage.setItem('pw', userpw);
+        localStorage.setItem('phonenum', )
         window.location.href = `main.html`;
     } else {
         alert('로그인에 실패하였습니다. 다시 시도해 주세요.');

@@ -17,6 +17,49 @@
         <a href="">마이페이지</a>
     </nav>
 
+    <div class="mypage-container">
+        <h2>마이페이지</h2>
+        <div class="image-container">
+            <img src="" alt="" id="userImg">
+            <div class="addition-container">
+                <div class="id-item">
+                    <p id="userid"></p>
+                </div>
+                <div class="button-container">
+                    <div class="image-button">
+                        <label for="file-input">이미지 변경</label>
+                        <input type="file" style="display: none;">
+                    </div>
+                    <div class="del-button">
+                        <input type="button" value="삭제">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="personal-info-container">
+            <p>개인정보</p>
+            <div class="phonenum-container">
+                <p>전화번호</p>
+                <p id="phonenum"></p>
+                <button>변경</button>
+                <div class="border"></div>
+            </div>
+            <div class="password-container">
+                <p>비밀번호</p>
+                <p id="password"></p>
+                <button>변경</button>
+                <div class="border"></div>
+            </div>
+            <div class="team-container">
+                <p>나의 팀</p>
+                <p id="team"></p>
+                <button>변경</button>
+                <div class="border"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/mypage.js"></script>
 </body>
 
