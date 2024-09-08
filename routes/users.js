@@ -6,9 +6,9 @@ const db = require('../models'); // 올바른 경로
 
 router.post('/login', async (req, res) => {
   const { _id, pw } = req.body;
+  console.log(_id, pw)
   try {
     const user = await db.ClientInfo.findOne({
-      attributes: ['name'],
       where: {
         _id: _id,
         pw: pw
@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
     if (!user) {
       res.status(401).json({ message: '로그인 정보가 일치하지 않습니다.' });
     } else {
-      res.status(200).json({ success: true, userId: _id });  // userId 반환
+      res.status(200).json({ success: true, userinfo : user });  // userId 반환
     }
   } catch (err) {
     res.status(500).json({ message: '로그인 실패', error: err.message });

@@ -30,19 +30,29 @@ async function submit(event) {
     const userid = document.getElementById('id').value;
     const userpw = document.getElementById('pw').value;
 
+    console.log(userid, userpw)
+
     if (!userid || !userpw) {
         alert('아이디 또는 비밀번호를 입력해 주세요.');
         return;
     }
 
     const result = await login(userid, userpw);
-    console.log(result)
+
     if (result) {
-        console.log('로그인 성공');
+        alert('로그인 성공')
+        console.log(result);
+        const username = result["userinfo"]["name"]
+        const userphone = result["userinfo"]["phonenum"]
+        const userimg = result["userinfo"]["image"]
+        const userteam = result["userinfo"]["team"]
+        
         localStorage.setItem('id', userid);
         localStorage.setItem('pw', userpw);
-        localStorage.setItem('phonenum', )
-        window.location.href = `main.html`;
+        localStorage.setItem('name', username);
+        localStorage.setItem('phonenum', userphone);
+        localStorage.setItem('image', userimg);
+        localStorage.setItem('team', userteam);
     } else {
         alert('로그인에 실패하였습니다. 다시 시도해 주세요.');
     }
