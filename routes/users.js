@@ -50,13 +50,14 @@ router.get('/findid', async (req, res) => {
 
 // 회원가입 API (POST 요청)
 router.post('/signup', async (req, res) => {
-  const { _id, pw, name, phonenum } = req.body;
+  const { _id, pw, name, phonenum, team } = req.body;
   try {
     const user = await db.ClientInfo.create({
       _id: _id,
       pw: pw,
       name: name,
-      phonenum: phonenum
+      phonenum: phonenum,
+      team : team 
     });
 
     res.status(200).json({ success: true, user });
