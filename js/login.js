@@ -53,6 +53,11 @@ async function submit(event) {
         localStorage.setItem('phonenum', userphone);
         localStorage.setItem('image', userimg);
         localStorage.setItem('team', userteam);
+
+        console.log(username, userphone, userimg, userteam)
+
+        window.location.href = 'main.html'
+        
     } else {
         alert('로그인에 실패하였습니다. 다시 시도해 주세요.');
     }

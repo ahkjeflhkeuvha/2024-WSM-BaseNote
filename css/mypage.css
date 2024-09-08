@@ -10,7 +10,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 15%;
+    margin-top: 18%;
 }
 
 a {
@@ -111,12 +111,65 @@ nav img {
 
 .personal-info-container > p {
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+}
+
+.phonenum-container, .password-container, .team-container {
+    position: relative;
+}
+
+.personal-info-container > .phonenum-container > button {
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+
+    background-color: transparent;
+    border: 1px solid #222222;
+    padding: 6px 24px;
+    border-radius: 5px;
+
+}
+
+.personal-info-container > .password-container > button {
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+
+    background-color: transparent;
+    border: 1px solid #222222;
+    padding: 6px 24px;
+    border-radius: 5px;
+}
+
+.personal-info-container > .team-container > button {
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+
+    background-color: transparent;
+    border: 1px solid #222222;
+    padding: 6px 24px;
+    border-radius: 5px;
+}
+
+#phonenum, #password, #team {
+    font-size: 22px;
 }
 
 .border {
     width: 100%;
     height: 1px;
     background-color: #222222;
-    margin: 20px 0;
+    margin: 10px 0;
+}
+
+#submitButton {
+    width: 100%;
+    height: 60px;
+    border: 0;
+    border-radius: 5px;
+    margin-bottom: 18px;
+    background-color: #05141F;
+    font-size: 20px;
+    color: white;
 }
