@@ -94,4 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 일기 목록을 로드합니다
     loadDiaries();
+
+    const plusBut = document.getElementsByClassName('plus-button')[0]
+    plusBut.addEventListener('click', () => {
+        window.location.href = 'basenote.html';
+    })
 });

@@ -49,8 +49,9 @@ async function submit(event) {
     }
 
     const result = await saveDiary(userId, title, date, bestPlayer, pitcher, location, gameRes, content);
-    if (result && result.message === '일기 저장 성공') {
+    if (result) {
         alert('일기가 성공적으로 저장되었습니다.');
+        window.location.href = 'diarylist.html';
     } else {
         alert(result.message || '일기 저장에 실패하였습니다. 다시 시도해 주세요.');
     }
@@ -68,7 +69,7 @@ async function fetchDiaries(id) {
 
         const data = await response.json();
 
-        if (data.success) {
+        if (data) {
             // diaries 데이터를 처리하는 코드
             displayDiaries(data.diaries);
         } else {
