@@ -8,6 +8,8 @@
 body {
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 a {
@@ -32,8 +34,13 @@ nav img {
     width: 75px;
 }
 
+h2 {
+    font-size: 48px;
+}
+
 #resultChart {
     display: flex;
-    width: 50%;
-    margin-top: 20%;
+    width: 50% !important;
+    height: 20% !important;
+    margin-top: 20% !important;
 }
