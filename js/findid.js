@@ -1,8 +1,11 @@
 async function findId(name, phone) {
     try {
-        // 쿼리 파라미터를 통해 name과 phone 전달
+        // 쿼리 파라미터로 name과 phone 전달
         const response = await fetch(`http://localhost:3000/users/findid?name=${encodeURIComponent(name)}&phonenum=${encodeURIComponent(phone)}`, {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
 
         if (!response.ok) {
@@ -29,7 +32,7 @@ async function submit(event) {
 
     const result = await findId(username, userphone);
     if (result && result.success) {
-        alert(`${username} 님의 아이디는 ${result.user._id} 입니다.`)
+        alert(`${username} 님의 아이디는 ${result.user._id} 입니다.`);
         setTimeout(() => {
             window.location.href = 'main.html'; // 성공 시 이동할 페이지
         }, 3000);

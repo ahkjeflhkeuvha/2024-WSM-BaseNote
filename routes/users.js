@@ -26,9 +26,11 @@ router.post('/login', async (req, res) => {
 });
 
 // 아이디 찾기 API (GET 요청)
+// 아이디 찾기
 router.get('/findid', async (req, res) => {
-  const { name, phonenum } = req.body;
-  console.log(name, phonenum)
+  const { name, phonenum } = req.query;  // req.query에서 값 추출
+  console.log(name, phonenum);
+  
   try {
     const user = await db.ClientInfo.findOne({
       attributes: ['_id'],
@@ -47,6 +49,31 @@ router.get('/findid', async (req, res) => {
     res.status(500).json({ message: '아이디 찾기 실패', error: err.message });
   }
 });
+
+// 비밀번호 찾기
+router.get('/findpw', async (req, res) => {
+  const { _id, phonenum } = req.query;  // req.query에서 값 추출
+  console.log(_id, phonenum);
+  
+  try {
+    const user = await db.ClientInfo.findOne({
+      attributes: ['pw'],
+      where: {
+        _id: _id,
+        phonenum: phonenum
+      }
+    });
+
+    if (!user) {
+      res.status(401).json({ message: '비밀번호 찾기에 실패했습니다.' });
+    } else {
+      res.status(200).json({ success: true, user });
+    }
+  } catch (err) {
+    res.status(500).json({ message: '비밀번호 찾기 실패', error: err.message });
+  }
+});
+
 
 // 회원가입 API (POST 요청)
 router.post('/signup', async (req, res) => {
