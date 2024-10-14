@@ -11,15 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const diaries = data["diaries"];
             const diaryList = document.getElementById('diary-list');
 
-            console.log(diaries)
-
             diaries.forEach(diary => {
+                const text = diary.content
                 const diaryElement = document.createElement('div');
                 diaryElement.setAttribute("class", "diary-content");
                 diaryElement.innerHTML = `
                             <img src="images/logo.jpg" alt="">
                             <h5>${diary.title}</h5>
-                            <p>${diary.content}</p>
+                            <p>${text}</p>
                             <div>
                                 <p>${diary.date}</p>
                                 <p>${diary.bestPlayer}</p>
