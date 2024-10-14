@@ -1,0 +1,75 @@
+
+* {
+    font-family: '기아';
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    color: black;
+    text-decoration: none;  
+}
+
+
+/* 네비게이션 바 */
+
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 10px 16px 0px rgba(102, 102, 102, 0.20);
+}
+
+nav img {
+    width: 75px;
+}
+#calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+}
+
+#calendar-container {
+    width: 600px;
+    height: 400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid black;
+}
+
+.item {
+    display: grid;
+    place-items: center;
+}
+
+.week-name {
+    font-weight: bold;
+    color: #aaa;
+    border-bottom: 1px solid black;
+}
+
+.item:nth-child(7n+1) {
+    color: crimson;
+}
+
+.item:nth-child(7n+7) {
+    color: blue;
+}
+
+.other-month {
+    color: #ddd !important;
+    
+}
