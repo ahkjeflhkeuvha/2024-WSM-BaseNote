@@ -34,7 +34,9 @@ nav {
 nav img {
     width: 75px;
 }
+
 #calendar-header {
+    margin-top: 20%;
     display: flex;
     justify-content: center;
     align-items: center;

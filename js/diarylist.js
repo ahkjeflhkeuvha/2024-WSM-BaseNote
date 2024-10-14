@@ -17,10 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const diaryElement = document.createElement('div');
                 diaryElement.setAttribute("class", "diary-content");
                 diaryElement.innerHTML = `
-                    <h2>${diary.title}</h2>
-                    <p>${diary.date}</p>
-                    <p>${diary.content.slice(0, 100)}...</p>
-                    <button onclick="openPopup(${diary.id})">Read More</button>
+                            <img src="images/logo.jpg" alt="">
+                            <h5>${diary.title}</h5>
+                            <p>${diary.content}</p>
+                            <div>
+                                <p>${diary.date}</p>
+                                <p>${diary.bestPlayer}</p>
+                                <p>${diary.result}</p>
+                            </div>
+                            <button onclick="openPopup(${diary.id})">Read More</button>
                 `;
                 diaryList.appendChild(diaryElement);
             });
