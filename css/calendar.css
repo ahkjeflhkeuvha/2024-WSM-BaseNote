@@ -75,3 +75,7 @@ nav img {
     color: #ddd !important;
     
 }
+
+.highlight {
+    background-color: red;
+}

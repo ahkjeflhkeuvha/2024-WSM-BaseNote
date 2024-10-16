@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const diaryList = document.getElementById('diary-list');
 
             diaries.forEach(diary => {
-                const text = diary.content.substr(0, 10);
+                const text = diary.content.substr(0, 20);
                 const diaryElement = document.createElement('div');
                 diaryElement.setAttribute("class", "diary-content");
                 diaryElement.innerHTML = `
