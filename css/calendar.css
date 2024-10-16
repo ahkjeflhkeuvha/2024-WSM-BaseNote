@@ -76,6 +76,14 @@ nav img {
     
 }
 
-.highlight {
-    background-color: red;
+.win-highlight {
+    background-color: rgb(255, 187, 187);
+}
+
+.lose-highlight {
+    background-color: rgb(177, 166, 248);
+}
+
+.none-highlight {
+    background-color: rgb(43, 217, 133);
 }

@@ -55,10 +55,12 @@ const setCalendar = async (date) => {
 
     calendarContainer.innerHTML = weekNameString;
 
-    let savedDiaries = []
+    let savedDiaries = new Map()
     savedDates.diaries.forEach((val) => {
-        savedDiaries.push(val.date); // 배열에 날짜 추가
+        savedDiaries.set(val["date"], val["result"])
     });
+
+    console.log(savedDates)
 
     // 이전 달의 뒷날짜 표시
     const prevMonthLastDate = new Date(year, month, 0);
@@ -81,9 +83,13 @@ const setCalendar = async (date) => {
         const realMonth = month + 1
         const realDate = date
         const dateString = `${year}-${realMonth.toString().padStart(2, '0')}-${realDate.toString().padStart(2, '0')}`; // "YYYY-MM-DD" 형식으로 변환
-        console.log(dateString, savedDiaries, savedDiaries.includes(dateString))
-        if (savedDiaries.includes(dateString)) {
-            currentMonthDateDiv.classList.add("highlight"); // 특정 클래스 추가
+        console.log(dateString, savedDiaries, savedDiaries.has(dateString))
+        if (savedDiaries.has(dateString) && savedDiaries.get(dateString) == "승") {
+            currentMonthDateDiv.classList.add("win-highlight"); // 특정 클래스 추가
+        } else if (savedDiaries.has(dateString) && savedDiaries.get(dateString) == "패") {
+            currentMonthDateDiv.classList.add("lose-highlight")
+        } else if (savedDiaries.has(dateString) && savedDiaries.get(dateString) == "무"){
+            currentMonthDateDiv.classList.add("non-hightlight")
         }
 
         currentMonthDateDiv.textContent = date;
