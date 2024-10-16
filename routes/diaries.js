@@ -57,4 +57,31 @@ router.get('/basenote/:id', async (req, res) => {
     }
 });
 
+const axios = require('axios');
+const cheerio = require('cheerio');
+
+// KBO 경기 일정 크롤링 API
+router.get('/schedule', async (req, res) => {
+    const url = 'https://www.koreabaseball.com/Schedule/Schedule.aspx';
+    console.log(url)
+    try {
+        const { data } = await axios.get(url);
+        console.log(data)
+        const $ = cheerio.load(data);
+        const games = [];
+
+        $('.tbl > tbody > tr').each((index, element) => {
+            const date = $(element).find('.day').text().trim();  // 날짜 추출
+            const teams = $(element).find('.play').text().trim(); // 팀 정보 추출
+            if (date && teams) {
+                games.push({ date, teams });
+            }
+        });
+
+        res.json(games);
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to fetch schedule' });
+    }
+});
+
 module.exports = router;

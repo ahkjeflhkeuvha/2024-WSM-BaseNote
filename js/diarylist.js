@@ -1,30 +1,28 @@
-const userid = localStorage.getItem('id');  // 소문자로 수정
-
 document.addEventListener('DOMContentLoaded', () => {
+    const userid = localStorage.getItem('id');
+
     // 일기 목록을 가져오고 렌더링하는 함수
     async function loadDiaries() {
         try {
-            // 일기 목록 데이터를 가져옵니다
             const response = await fetch(`http://localhost:3000/diaries/basenote/${userid}`);
-
             const data = await response.json();
             const diaries = data["diaries"];
             const diaryList = document.getElementById('diary-list');
 
             diaries.forEach(diary => {
-                const text = diary.content
+                const text = diary.content;
                 const diaryElement = document.createElement('div');
                 diaryElement.setAttribute("class", "diary-content");
                 diaryElement.innerHTML = `
-                            <img src="images/logo.jpg" alt="">
-                            <h5>${diary.title}</h5>
-                            <p>${text}</p>
-                            <div>
-                                <p>${diary.date}</p>
-                                <p>${diary.bestPlayer}</p>
-                                <p>${diary.result}</p>
-                            </div>
-                            <button onclick="openPopup(${diary.id})">Read More</button>
+                    <img src="images/logo.jpg" alt="">
+                    <h5>${diary.title}</h5>
+                    <p>${text}</p>
+                    <div>
+                        <p>${diary.date}</p>
+                        <p>${diary.bestPlayer}</p>
+                        <p>${diary.result}</p>
+                    </div>
+                    <button onclick="openPopup(${diary.id})">Read More</button>
                 `;
                 diaryList.appendChild(diaryElement);
             });
@@ -36,19 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // 팝업을 여는 함수
     window.openPopup = async function(id) {
         try {
-            // 선택한 일기의 세부 정보를 가져옵니다
             const response = await fetch(`http://localhost:3000/diaries/${id}`);
             const data = await response.json();
 
-            console.log(data)
             if (!data.success) {
                 alert('Diary not found');
                 return;
             }
 
-            const diary = data["diaries"][0];  // 선택된 일기의 데이터
-            console.log(diary)
-
+            const diary = data["diaries"][0];
             const popupContent = document.getElementById('popup-content');
             popupContent.innerHTML = `
                 <div class="popup-items">
@@ -86,21 +80,50 @@ document.addEventListener('DOMContentLoaded', () => {
             const popup = document.getElementById('popup');
             popup.classList.add('active');
         } catch (error) {
-            console.error('Failed to load diary:');
+            console.error('Failed to load diary:', error);
         }
     };
 
-    // 팝업을 닫는 함수
     window.closePopup = function() {
         const popup = document.getElementById('popup');
         popup.classList.remove('active');
     };
 
-    // 일기 목록을 로드합니다
     loadDiaries();
 
-    const plusBut = document.getElementsByClassName('plus-button')[0]
+    const plusBut = document.getElementsByClassName('plus-button')[0];
     plusBut.addEventListener('click', () => {
         window.location.href = 'basenote.html';
-    })
+    });
+
+    // 서버에서 HTML 파싱 작업을 진행할 수 있음
+    // cheerio가 필요한 부분은 서버에서 처리
+
+    const axios = require("axios");
+    const cheerio = require("cheerio");
+    
+    const getHtml = async () => {
+      try {
+        // 1
+        const html = await axios.get("https://www.genie.co.kr/chart/top200");
+        let ulList = [];
+        // 2
+        const $ = cheerio.load(html.data);
+        // 3
+        const bodyList = $("tr.list");
+        bodyList.map((i, element) => {
+          ulList[i] = {
+            rank: i + 1,
+            // 4
+            title: $(element).find("td.info a.title").text().replace(/\s/g, ""),
+            artist: $(element).find("td.info a.artist").text().replace(/\s/g, ""),
+          };
+        });
+        console.log("bodyList : ", ulList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+    getHtml();
 });
