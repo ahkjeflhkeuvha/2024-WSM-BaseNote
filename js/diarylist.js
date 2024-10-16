@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const diaryList = document.getElementById('diary-list');
 
             diaries.forEach(diary => {
-                const text = diary.content;
+                const text = diary.content.substr(0, 10);
                 const diaryElement = document.createElement('div');
                 diaryElement.setAttribute("class", "diary-content");
                 diaryElement.innerHTML = `
@@ -96,34 +96,4 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'basenote.html';
     });
 
-    // 서버에서 HTML 파싱 작업을 진행할 수 있음
-    // cheerio가 필요한 부분은 서버에서 처리
-
-    const axios = require("axios");
-    const cheerio = require("cheerio");
-    
-    const getHtml = async () => {
-      try {
-        // 1
-        const html = await axios.get("https://www.genie.co.kr/chart/top200");
-        let ulList = [];
-        // 2
-        const $ = cheerio.load(html.data);
-        // 3
-        const bodyList = $("tr.list");
-        bodyList.map((i, element) => {
-          ulList[i] = {
-            rank: i + 1,
-            // 4
-            title: $(element).find("td.info a.title").text().replace(/\s/g, ""),
-            artist: $(element).find("td.info a.artist").text().replace(/\s/g, ""),
-          };
-        });
-        console.log("bodyList : ", ulList);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    
-    getHtml();
 });

@@ -4,11 +4,14 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 body {
     height: 100%;
-    width: 100%;
+    width: max-content;
     display: flex;
     justify-content: center;
 }
@@ -25,6 +28,7 @@ nav {
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0 ;
     display: flex;
     justify-content: space-around;
     align-items: center;

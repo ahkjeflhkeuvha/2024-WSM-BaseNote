@@ -7,8 +7,10 @@
 
 body {
     height: 100%;
-    width: 100%;
+    width: 100%; /* 전체 너비에 맞춤 */
     z-index: -1;
+    display: grid;
+    place-items: center;
 }
 
 a {
@@ -16,13 +18,12 @@ a {
     text-decoration: none;  
 }
 
-
 /* 네비게이션 바 */
-
 nav {
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -36,39 +37,50 @@ nav img {
 }
 
 .plus-button {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
+    position: fixed; /* 고정 위치로 변경 */
+    bottom: 20px; /* 화면 하단에서 20px */
+    right: 20px; /* 화면 오른쪽에서 20px */
     border: 0;
     background-color: transparent;
-    position: fixed;
+    z-index: 20; /* 다른 요소 위에 나타나도록 z-index 설정 */
 }
 
 .bi-plus-circle-fill {
     font-size: 80px;
 }
 
+
+main {
+    margin-top: 16%; /* 네비게이션 바를 고려한 여백 */
+    width: 100%; /* 부모 너비에 맞춤 */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
 #diary-list {
     display: grid;
-    width: 100%;
-    height: 100%;
-    grid-template-columns: repeat(3, 30%);
-    margin-top: 10%;
+    width: 100%; /* 부모 너비에 맞춤 */
+    height: 100%; /* 부모 높이에 맞춤 */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 반응형 그리드 */
     place-items: center;
-    justify-content: center;
+    column-gap: 2%;
+    row-gap: 2%; /* 행 간격 설정 */
+    padding: 0 2%;
 }
 
 .diary-content {
     background-color: #F7F7F7;
-    padding: 2%;
-    width: 400px;
-    height: 550px;
-    margin: 10%;
+    padding: 5%;
     border-radius: 5px;
-    position: relative;
-    border-radius: 5px;
-    margin-bottom: 30px;
     box-shadow: 0px 10px 16px 0px rgba(102, 102, 102, 0.20);
+    display: flex; /* Flexbox로 조정 */
+    flex-direction: column; /* 자식 요소 수직 정렬 */
+    justify-content: flex-start; /* 자식 요소 사이 공간 분배 */
+    width: 100%; /* 부모 너비에 맞춤 */
+    max-width: 400px; /* 최대 너비 제한 */
+    height: 550px;
+    position: relative;
 }
 
 .diary-content > img {
@@ -85,16 +97,16 @@ nav img {
 }
 
 .diary-content > div {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: space-between;
 }
 
 .diary-content > button {
     border: 0;
+    padding: 10px 10%;
     position: absolute;
     bottom: 0;
-    padding: 10px 0;
-    width: 350px;
+    width: 90%;
     border-radius: 5px;
     margin-bottom: 18px;
     background-color: #05141F;
@@ -119,7 +131,6 @@ nav img {
     overflow-y: auto;
     border-radius: 10px;
 }
-
 
 .popup.active {
     display: block;
@@ -154,7 +165,7 @@ nav img {
 
 .popup-items > div {
     background-color: #F7F7F7;
-    padding: 10px 15px 10px 15px;
+    padding: 10px 15px;
 }
 
 .popup-items > div > p:nth-child(2) {
