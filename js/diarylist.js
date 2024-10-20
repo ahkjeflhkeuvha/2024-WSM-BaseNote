@@ -10,18 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const diaryList = document.getElementById('diary-list');
 
             diaries.forEach(diary => {
-                const text = diary.content.substr(0, 20);
+                const title = diary.content.substr(0, 10);
+                const text = diary.content.substr(0, 80);
                 const diaryElement = document.createElement('div');
                 diaryElement.setAttribute("class", "diary-content");
                 diaryElement.innerHTML = `
                     <img src="images/logo.jpg" alt="">
-                    <h5>${diary.title}</h5>
-                    <p>${text}</p>
+                    <h5>${title}</h5>
                     <div>
                         <p>${diary.date}</p>
                         <p>${diary.bestPlayer}</p>
                         <p>${diary.result}</p>
                     </div>
+                    <p>${text}</p>
                     <button onclick="openPopup(${diary.id})">Read More</button>
                 `;
                 diaryList.appendChild(diaryElement);
