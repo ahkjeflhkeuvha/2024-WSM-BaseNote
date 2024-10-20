@@ -57,43 +57,4 @@ async function submit(event) {
     }
 }
 
-async function fetchDiaries(id) {
-    try {
-        const response = await fetch(`http://localhost:3000/basenote/${id}`, {
-            method: 'GET'
-        });
-
-        if (!response.ok) {
-            throw new Error(`Fetch failed: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data) {
-            // diaries 데이터를 처리하는 코드
-            displayDiaries(data.diaries);
-        } else {
-            alert(data.message || '다시 시도해 주세요.');
-        }
-    } catch (err) {
-        alert('서버에서 데이터를 가져오는 데 문제가 발생했습니다.');
-    }
-}
-
-function displayDiaries(diaries) {
-    // diaries 데이터를 HTML에 표시하는 로직
-    const container = document.getElementById('diaryContainer');
-    container.innerHTML = '';
-
-    diaries.forEach(diary => {
-        const diaryElement = document.createElement('div');
-        diaryElement.textContent = `Diary ID: ${diary.id}, Content: ${diary.content}`;
-        container.appendChild(diaryElement);
-    });
-}
-
-// 예시로 특정 ID를 사용하여 데이터 불러오기
-const id = window.location.pathname.split('/').pop();
-fetchDiaries(id);
-
 document.getElementById('submitButton').addEventListener('click', submit);

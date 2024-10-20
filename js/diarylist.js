@@ -9,9 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const diaries = data["diaries"];
             const diaryList = document.getElementById('diary-list');
 
+
             diaries.forEach(diary => {
                 const title = diary.content.substr(0, 10);
                 const text = diary.content.substr(0, 80);
+                const res = diary.content.result
+                
                 const diaryElement = document.createElement('div');
                 diaryElement.setAttribute("class", "diary-content");
                 diaryElement.innerHTML = `
@@ -21,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p>${diary.date}</p>
                         <p>${diary.bestPlayer}</p>
                         <p>${diary.result}</p>
+                        ${diary.result ? '<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Face%20Blowing%20a%20Kiss.png" alt="Face Blowing a Kiss" width="25" height="25" />' : '<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Anxious%20Face%20with%20Sweat.png" alt="Anxious Face with Sweat" width="25" height="25" />'}
                     </div>
                     <p>${text}</p>
                     <button onclick="openPopup(${diary.id})">Read More</button>

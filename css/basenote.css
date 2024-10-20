@@ -9,6 +9,10 @@
     align-items: center;
 }
 
+head > #text {
+    display: none;
+}
+
 body {
     height: 100%;
     width: max-content;

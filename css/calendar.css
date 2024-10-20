@@ -11,6 +11,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: #F4F7FA;  
 }
 
 a {
@@ -41,20 +42,29 @@ nav img {
     justify-content: center;
     align-items: center;
     column-gap: 40px;
+    margin-bottom: 20px;
+}
+
+#calendar-header > button {
+    border: 0;
+    background-color: transparent ;
 }
 
 #calendar-container {
     width: 600px;
-    height: 400px;
+    height: calc(max-content + 20px);
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
 
 .item {
     display: grid;
     place-items: center;
+    width: 70px;
+    height: 70px;
 }
 
 .week-name {
@@ -78,6 +88,7 @@ nav img {
 
 .win-highlight {
     background-color: rgb(255, 187, 187);
+    border-radius: 50%;
 }
 
 .lose-highlight {
